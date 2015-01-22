@@ -1,4 +1,4 @@
-App.ALBUM_FIXTURES = [{
+var albums = [{
   id: "1",
   artwork: "images/the-morning-after.jpg",
   name: "The Morning After",
@@ -26,7 +26,7 @@ App.ALBUM_FIXTURES = [{
   songs: [ "41", "42", "43", "44" ]
 }];
 
-App.SONG_FIXTURES = [{
+var songs = [{
   id: "11",
   track: 1,
   name: "A Walk",
@@ -139,6 +139,14 @@ App.SONG_FIXTURES = [{
   url: 'audio/Southern_Nights_-_09_-_Grass_or_Gasoline.mp3',
   album: "4"
 }];
+
+App.ALBUM_FIXTURES = albums.map(function(album){
+  return App.Album.create(album);
+});
+
+App.SONG_FIXTURES = songs.map(function(song){
+  return App.Song.create(song)
+});
 
 App.ALBUM_FIXTURES.forEach(function(album) {
   album.songs = album.songs.map(function(id) {
