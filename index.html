@@ -18,6 +18,7 @@
     <script type="text/x-handlebars">
       <header><h1>BümBöx</h1></header>
       {{outlet}}
+      {{render 'nowPlaying'}}
     </script>
 
     <script type="text/x-handlebars" id="index">
@@ -50,6 +51,7 @@
           <tr>
             <td class="song-track">
               <span class="track-number">{{track}}</span>
+              <span class="play" {{action "play" this}}>▶</span>
             </td>
             <td class="song-name">{{name}}</td>
             <td class="song-duration">{{format-duration duration}}</td>
@@ -59,6 +61,24 @@
           <td class="total-duration" colspan="3">{{format-duration totalDuration}}</td>
         </tr>
       </table>
+    </script>
+
+    <script type="text/x-handlebars" id="nowPlaying">
+      <footer class="now-playing">
+        {{#if model}}
+          <img class="now-playing-artwork" {{bindAttr src=album.artwork}}>
+          <div class="now-playing-body">
+            <p class="now-playing-details">
+              <span class="now-playing-name">{{name}}</span> -
+              <span class="now-playing-artist">{{album.artist}}</span>
+            </p>
+            <div class="now-playing-player">
+            </div>
+          </div>
+        {{else}}
+          <span class="now-playing-empty">Select a song to start playing.</span>
+        {{/if}}
+      </footer>
     </script>
 
     <div id="qunit" style="display: none"></div>

@@ -23,6 +23,15 @@ App.IndexRoute = Ember.Route.extend({
   model: function() {
     return App.ALBUM_FIXTURES;
   }
+  
+});
+
+App.ApplicationRoute = Ember.Route.extend({
+  events: {
+    play: function(song){
+      this.controllerFor('nowPlaying').set('model', song);
+    }
+  }
 });
 
 App.AlbumRoute = Ember.Route.extend({
@@ -30,6 +39,8 @@ App.AlbumRoute = Ember.Route.extend({
     return App.ALBUM_FIXTURES.findProperty('id', params.album_id);
   }
 });
+
+App.NowPlayingController = Ember.ObjectController.extend();
 
 Ember.Handlebars.helper('format-duration', function(seconds) {
   var minutes = Math.floor(seconds/60);
